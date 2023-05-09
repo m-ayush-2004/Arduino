@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ROBO ARM</title>
+        <style>
+            .container{
+                display: flex;
+                justify-content: center;
+                justify-self: center;
+                height: 100vh;
+                width: 100vw;
+            }
+            .inner-container{
+                /* display: flex; */
+                background: #000;
+                border-radius: 200px;
+                width: 285px;
+                padding: 20px;
+                height: fit-content;
+                justify-items: center;
+                justify-self: center;
+                justify-content: center;
+                align-self: center;
+                align-items: center;
+            }
+            .pad1{
+                padding-left: 80.16px;
+                border-radius: 100px;
+            }
+            /* .btns{
+    
+                background: tomato;
+            } */
+            .pad2{
+                padding-left: 90.18px;
+            }
+            .btn1{
+                align-self: center;
+                background-color: teal;
+                color: aliceblue;
+                font-family: sans-serif;
+                font-size: medium;
+                border: solid teal 4px;
+                border-radius: 10px;
+                padding: 10px;
+                width: 100px;
+            }
+            a{
+                text-decoration: none;
+                color: aliceblue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="inner-container">
+                <span class="pad2"></span>
+                <button type="button" value="UP" class="btn1"><a href="/up">UP</a> </button>
+                <br>
+                <br>
+                <button type="button" value="LEFT" class="btn1"><a href="/left">LEFT</a> </button>
+                <!-- <button></button> -->
+                <span class="pad1"></span>
+                <button type="button" value="RIGHT" class="btn1"><a href="right">RIGHT</a> </button>
+                <br>
+                <br>
+                <span class="pad2"></span>
+                <button type="button" value="DOWN" class="btn1"><a href="/down">DOWN</a> </button>
+            </div>
+        </div>
+    </body>
+    </html>
