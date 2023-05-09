@@ -9,8 +9,8 @@
 #include <ArduinoJson.h>
 #include <ESP8266WiFiMulti.h>
 ESP8266WiFiMulti multifi;
-const char *ssid1="rajeshgupta",*ssid2="Ayush",*ssid3="VITC-HOS2-4";
-const char *pass1="ayushgupta",*pass2="ayush2004",*pass3="2021043019";
+const char *ssid1="your_ssid";
+const char *pass1="your_password";
 const char controls[] PROGMEM= R"rawliteral(
 <!DOCTYPE html>{
 <html lang="en">
@@ -216,8 +216,6 @@ void loop(){
 
 void handle_connect(){
   multifi.addAP(ssid1,pass1);
-  multifi.addAP(ssid2,pass2);
-  multifi.addAP(ssid3,pass3);
   Serial.print("Connecting to strongest wifi...");
   while(multifi.run()!= WL_CONNECTED){
     Serial.print(".");
@@ -282,7 +280,7 @@ void handle_left(){
 
 void handle_ota(){
     ArduinoOTA.setHostname("ROBO_ARM");
-//    ArduinoOTA.setPassword("admin");
+   ArduinoOTA.setPassword("admin");
     ArduinoOTA.onStart([](){
       String type;
       delay(5000);
