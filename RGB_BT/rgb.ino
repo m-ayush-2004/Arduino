@@ -1,20 +1,60 @@
-#include <SoftwareSerial.h>
 
+/*
+materials
+
+ARDUINO uno,
+HC-05,
+LED (RGB)
+jumper wires
+Bread boarD
+
+
+connections to leds
+  ----------------------
+ |   UNO         led   |
+  ----------------------
+ |   D6   -->     R    |
+  ----------------------
+ |   D5   -->     G    |
+  ----------------------
+ |   D3   -->     B    |
+  ---------------------- 
+ |   3.3v -->   led+   |
+  ----------------------
+  
+  
+  connections to HC-05
+  ----------------------
+ |   UNO        HC-05  |
+  ----------------------
+ |   10   -->    RX    |
+  ----------------------
+ |   11   -->    TX    |
+  ----------------------
+ |   GND  -->   GND    |
+  ---------------------- 
+ |   3.3v -->   VCC   |
+  ----------------------
+*/
+#include <SoftwareSerial.h>
+#define red 6
+#define green 5
+#define blue 3
 SoftwareSerial mySerial(10, 11); // RX, TX
 void setup() 
 {
   Serial.begin(9600);  
   mySerial.begin(38400);   
-  pinMode(6, OUTPUT); 
-  pinMode(5, OUTPUT); 
-  pinMode(3, OUTPUT);      
+  pinMode(red, OUTPUT); 
+  pinMode(green, OUTPUT); 
+  pinMode(blue, OUTPUT);      
   Serial.println("Board is connected!!");   
 }
 
 float arr[3]={0,0,0};
 void loop()
 {
-         
+// COLLECTOR SECTION OF THE CODE THAT COLLECTS THE VALUE OF HSV FROM THE BURT APP CLIENT INERACTIONS AND DISCARDING ALL STOP START AND INTRMEDIATE BIT VALUES
   for(int i=0;i<3;i++){
     if (mySerial.available()>0)
     {
@@ -27,12 +67,14 @@ void loop()
   float h= arr[0]/100;
   float s=arr[1]/100;
   float v=arr[2]/100;
+//CONVERTER CODE THAT CONVERTS THE VALUES HSV TO RGB
 if(h>0 && s>0 && v>0){
+    Serial.println("HSV (recived): ");
     Serial.print("h:");
-    Serial.println(h);
-    Serial.print("s:");
-    Serial.println(s);
-    Serial.print("v:");
+    Serial.print(h);
+    Serial.print(" , s:");
+    Serial.print(s);
+    Serial.print(" , v:");
     Serial.println(v);
     double r, g, b;
     int i = int(h * 6);
@@ -53,14 +95,15 @@ if(h>0 && s>0 && v>0){
     r = r * 255;
     g = g * 255;
     b = b * 255;
-    analogWrite(6,255-r);
-    analogWrite(5,255-g);
-    analogWrite(3,255-b);
+    analogWrite(red,255-r);
+    analogWrite(green,255-g);
+    analogWrite(blue,255-b);
+    Serial.println("RGB (converted): ");
     Serial.print("r:");
     Serial.println(r);
-    Serial.print("g:");
+    Serial.print(" , g:");
     Serial.println(g);
-    Serial.print("b:");
+    Serial.print(" , b:");
     Serial.println(b);
     arr[0]=0;
     arr[1]=0;
